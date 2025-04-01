@@ -1,6 +1,7 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, RootModel
 from typing import Dict, List, Optional
 
+# Dog API Models
 class DogRandomImage(BaseModel):
     message: str
     status: str
@@ -10,15 +11,19 @@ class DogBreedList(BaseModel):
     status: str
 
 class DogErrorResponse(BaseModel):
-    code: int
     message: str
     status: str
+    code: int
 
+# JSONPlaceholder Models
 class Post(BaseModel):
     userId: int
     id: int
     title: str
     body: str
+
+class Posts(RootModel):
+    root: List[Post]
 
 class Comment(BaseModel):
     postId: int
@@ -27,6 +32,10 @@ class Comment(BaseModel):
     email: str
     body: str
 
+class Comments(RootModel):
+    root: List[Comment]
+
+# OpenBreweryDB Models
 class Brewery(BaseModel):
     id: str
     name: str
@@ -39,5 +48,9 @@ class Brewery(BaseModel):
     longitude: Optional[str]
     latitude: Optional[str]
     website_url: Optional[str]
+    phone: Optional[str]
     updated_at: str
     created_at: str
+
+class Breweries(RootModel):
+    root: List[Brewery]
