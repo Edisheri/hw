@@ -1,6 +1,6 @@
 import pytest
 import requests
-from hw4.tests.models import DogRandomImage, DogBreedList, DogErrorResponse
+from hw4.tests.models import DogRandomImage, DogBreedList, DogErrorResponse, DogSubBreedList
 
 BASE_URL = "https://dog.ceo/api"
 
@@ -22,8 +22,8 @@ def test_all_breeds_list():
 def test_subbreeds_list(breed, subbreeds):
     response = requests.get(f"{BASE_URL}/breed/{breed}/list")
     assert response.status_code == 200
-    data = DogBreedList.model_validate(response.json())
-    assert set(subbreeds).issubset(set(data.message.get(breed, [])))
+    data = DogSubBreedList.model_validate(response.json())
+    assert set(subbreeds).issubset(data.message)
 
 def test_invalid_breed():
     response = requests.get(f"{BASE_URL}/breed/invalid_breed/images")

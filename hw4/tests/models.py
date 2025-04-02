@@ -10,6 +10,10 @@ class DogBreedList(BaseModel):
     message: Dict[str, List[str]]
     status: str
 
+class DogSubBreedList(BaseModel):
+    message: List[str]
+    status: str
+
 class DogErrorResponse(BaseModel):
     message: str
     status: str
