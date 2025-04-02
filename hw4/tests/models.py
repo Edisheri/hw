@@ -1,4 +1,4 @@
-from pydantic import BaseModel, RootModel
+from pydantic import BaseModel, RootModel, Field
 from typing import Dict, List, Optional
 
 # Dog API Models
@@ -40,17 +40,17 @@ class Brewery(BaseModel):
     id: str
     name: str
     brewery_type: str
-    street: Optional[str]
+    street: Optional[str] = None
     city: str
     state: str
     postal_code: str
     country: str
-    longitude: Optional[str]
-    latitude: Optional[str]
-    website_url: Optional[str]
-    phone: Optional[str]
-    updated_at: str
-    created_at: str
+    longitude: Optional[float] = None
+    latitude: Optional[float] = None
+    website_url: Optional[str] = None
+    phone: Optional[str] = None
+    updated_at: Optional[str] = None
+    created_at: Optional[str] = None
 
 class Breweries(RootModel):
     root: List[Brewery]

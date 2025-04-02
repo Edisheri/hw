@@ -10,7 +10,7 @@ def test_breweries_by_state(state):
     assert response.status_code == 200
     Breweries.model_validate(response.json())
 
-@pytest.mark.parametrize("brewery_id", ["madtree-brewing-cincinnati", "10-barrel-brewing-co-san-diego"])
+@pytest.mark.parametrize("brewery_id", ["6d14b220-8926-4521-8d19-b98a2d6ec3db",  "9c5a66c8-cc13-416f-a5d9-0a769c87d318"])
 def test_get_brewery_by_id(brewery_id):
     response = requests.get(f"{BASE_URL}/{brewery_id}")
     assert response.status_code == 200
